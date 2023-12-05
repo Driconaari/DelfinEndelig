@@ -1,5 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
 
 public class Member {
     private String name;
@@ -10,6 +14,8 @@ public class Member {
     private String team; // New field
     private String recordSwimmingTime; // New field
     private boolean isCompetitiveSwimmer;
+    private String competitiveSwimmingTime;
+
 
     public Member(String name, String dateOfBirth, String email, String phoneNumber, String address) {
         this.name = name;
@@ -115,4 +121,6 @@ public class Member {
     public void setRecordSwimmingTime(String recordSwimmingTime) {
         this.recordSwimmingTime = recordSwimmingTime;
     }
+
+
 }
