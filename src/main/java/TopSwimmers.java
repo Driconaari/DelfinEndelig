@@ -23,6 +23,7 @@ public class TopSwimmers {
         displayTopSwimmers(getTopSwimmers("senior"));
     }
 
+
     private List<Member> getTopSwimmers(String category) {
         // Implement logic to retrieve the top 5 swimmers for the specified category
         // You can sort the competitive swimmers based on their performance and return the top 5
@@ -42,7 +43,10 @@ public class TopSwimmers {
 
     private void displayTopSwimmers(List<Member> topSwimmers) {
         for (Member member : topSwimmers) {
-            System.out.println(memberToString(member));
+            // Check if the member has a recorded swimming time before displaying
+            if (member.getRecordSwimmingTime() != null) {
+                System.out.println(memberToString(member));
+            }
         }
         System.out.println();
     }

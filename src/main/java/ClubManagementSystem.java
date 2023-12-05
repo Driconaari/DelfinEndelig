@@ -16,6 +16,7 @@ public class ClubManagementSystem {
     private double calculateSubscriptionCost(Member member) {
         return SubscriptionCalculator.calculateSubscriptionCost(member.getDateOfBirth());
     }
+
     public void run() {
         Scanner scanner = new Scanner(System.in);
 
@@ -58,10 +59,14 @@ public class ClubManagementSystem {
                     break;
                 case 7:
                     // Calculate and display subscription cost for each member
+                    System.out.println("Subscription Costs:");
                     for (Member member : members) {
-                        double subscriptionCost = calculateSubscriptionCost(member);
-                        System.out.println("Subscription cost for " + member.getName() + ": DKK" + subscriptionCost);
+                        double subscriptionCost = SubscriptionCalculator.calculateSubscriptionCost(member);
+                        System.out.println(member.getName() + ": DKK" + subscriptionCost);
                     }
+
+                    break;
+
                 case 8:
                     topSwimmers.viewTopSwimmers();
                     break;
@@ -119,6 +124,7 @@ public class ClubManagementSystem {
 
         return baseString + additionalInfo;
     }
+
     private String[] getDistinctTeams(List<Member> members) {
         List<String> teamList = this.members.stream()
                 .map(Member::getTeam)
@@ -139,21 +145,29 @@ public class ClubManagementSystem {
             System.out.println(i + 1 + ". " + members.get(i).getName());
         }
 
-        // Ask the user to select a member
-        System.out.print("Enter the index of the member to mark as a competitive swimmer: ");
-        int selectedIndex = scanner.nextInt();
+        // Ask the user to enter the name of the member
+        System.out.print("Enter the name of the member to mark as a competitive swimmer: ");
+        String selectedName = scanner.nextLine();
 
-        // Validate the user input
-        if (selectedIndex < 1 || selectedIndex > members.size()) {
-            System.out.println("Invalid index. Please try again.");
-            return;
+        // Find the member with the entered name
+        Member selectedMember = findMemberByName(selectedName);
+
+        if (selectedMember != null) {
+            // Mark the selected member as a competitive swimmer
+            selectedMember.setCompetitiveSwimmer(true);
+            System.out.println(selectedMember.getName() + " has been marked as a competitive swimmer.");
+        } else {
+            System.out.println("Member not found. Please enter a valid name.");
         }
+    }
 
-        // Mark the selected member as a competitive swimmer
-        Member selectedMember = members.get(selectedIndex - 1);
-        selectedMember.setCompetitiveSwimmer(true);
-
-        System.out.println(selectedMember.getName() + " has been marked as a competitive swimmer.");
+    private Member findMemberByName(String name) {
+        for (Member member : members) {
+            if (member.getName().equalsIgnoreCase(name)) {
+                return member;
+            }
+        }
+        return null;
     }
 
 
@@ -206,6 +220,7 @@ public class ClubManagementSystem {
 
         System.out.println("Member created successfully.");
     }
+
     private void addCoach() {
         Scanner scanner = new Scanner(System.in);
 
@@ -279,7 +294,6 @@ public class ClubManagementSystem {
             System.out.println("No member found with the given name.");
         }
     }
-
 
 
 }
