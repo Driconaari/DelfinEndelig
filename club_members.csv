@@ -1,0 +1,8 @@
+Name,DateOfBirth,Email,PhoneNumber,Address,Team,RecordSwimmingTime
+John Doe,1990-05-15,johndoe@email.com,1234567890,123 Main St,TeamA,1:30.45
+Jane Smith,1988-08-22,janesmith@email.com,9876543210,456 Oak St,TeamB,1:25.20
+Bob Johnson,1995-02-10,bobjohnson@email.com,5558889999,789 Pine St,TeamC,1:40.60
+Alice Lee,1992-11-18,alicelee@email.com,1112223333,987 Elm St,TeamA,1:28.75
+Charlie Brown,1987-04-05,charliebrown@email.com,9998887777,654 Birch St,TeamB,1:33.90
+Eva Davis,1998-09-30,evadavis@email.com,4443332222,321 Maple St,TeamC,1:42.30
+Bob Chesterman,2001-02-23,Bob@mail.com,23232323,bovej,Passive Member,
