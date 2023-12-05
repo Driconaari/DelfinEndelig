@@ -14,8 +14,13 @@ public class ClubManagementSystem {
     }
 
     private double calculateSubscriptionCost(Member member) {
-        return SubscriptionCalculator.calculateSubscriptionCost(member.getDateOfBirth());
+        return SubscriptionCalculator.calculateSubscriptionCost(
+                member.getDateOfBirth(),
+                member.isCompetitiveSwimmer()
+        );
     }
+
+
 
     public void run() {
         Scanner scanner = new Scanner(System.in);
@@ -61,11 +66,14 @@ public class ClubManagementSystem {
                     // Calculate and display subscription cost for each member
                     System.out.println("Subscription Costs:");
                     for (Member member : members) {
-                        double subscriptionCost = SubscriptionCalculator.calculateSubscriptionCost(member);
+                        double subscriptionCost = SubscriptionCalculator.calculateSubscriptionCost(
+                                member.getDateOfBirth(),
+                                member.isCompetitiveSwimmer()
+                        );
                         System.out.println(member.getName() + ": DKK" + subscriptionCost);
                     }
-
                     break;
+
 
                 case 8:
                     topSwimmers.viewTopSwimmers();
