@@ -27,10 +27,10 @@ public class ClubManagementSystemController {
         for (String team : getDistinctTeams(members)) {
             System.out.println("Team: " + team);
 
-            // Get coaches for the current team
+            //Get coaches for the current team
             List<Coach> teamCoaches = getCoachesByTeam(coaches, team);
 
-            // Print coaches for the current team
+            //Print coaches for the current team
             for (Coach coach : teamCoaches) {
                 System.out.println("  Coach: " + coach.getName());
             }
@@ -38,7 +38,7 @@ public class ClubManagementSystemController {
     }
 
 
-    // Helper method to get coaches for a specific team
+    //Helper method to get coaches for a specific team
     private List<Coach> getCoachesByTeam(List<Coach> coaches, String team) {
         return this.coaches.stream()
                 .filter(coach -> coach.getTeam().equals(team))
@@ -57,7 +57,6 @@ public class ClubManagementSystemController {
     private String memberToString(Member member) {
         String baseString = member.toString();
 
-        // Add additional information or customization
         String additionalInfo = String.format("  Additional Information: [isCompetitiveSwimmer=%b]%n", member.isCompetitiveSwimmer());
 
         return baseString + additionalInfo;
@@ -69,7 +68,6 @@ public class ClubManagementSystemController {
                 .distinct()
                 .collect(Collectors.toList());
 
-        // Convert List to array
         return teamList.toArray(new String[0]);
     }
 
@@ -131,33 +129,72 @@ public class ClubManagementSystemController {
     void createMember() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter Name:");
-        String name = scanner.nextLine();
+        try {
+            String name;
+            do {
+                System.out.println("Enter Name:");
+                name = scanner.nextLine();
+                if (!name.matches("[a-zA-Z]+")){
+                    System.out.println("Invalid, try again!");
+                }
+            } while (!name.matches("[a-zA-Z]+"));
 
-        System.out.println("Enter Date of Birth 'yyyy-MM-dd':");
-        String dateOfBirth = scanner.nextLine();
 
-        System.out.println("Enter Email:");
-        String email = scanner.nextLine();
+            String dateOfBirth;
+            do {
+                System.out.println("Enter Date of Birth 'yyyy-MM-dd':");
+                dateOfBirth = scanner.nextLine();
+                if (!dateOfBirth.matches("\\d{8}")) {
+                    System.out.println("Invalid, try again!");
+                }
+            } while (!dateOfBirth.matches("\\d{8}"));
 
-        System.out.println("Enter Phone Number:");
-        String phoneNumber = scanner.nextLine();
 
-        System.out.println("Enter Address:");
-        String address = scanner.nextLine();
+            String email;
+            do {
+                System.out.println("Enter Email:");
+                email = scanner.nextLine();
+                if (!email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
+                    System.out.println("Invalid, try again!");
+                }
+            } while (!email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"));
 
-        System.out.println("Enter Team:");
-        String team = scanner.nextLine();
 
-        System.out.println("Enter Record Swimming Time:");
-        String recordSwimmingTime = scanner.nextLine();
+            String phoneNumber;
+            do {
+                System.out.println("Enter Phone Number:");
+                phoneNumber = scanner.nextLine();
+                if (!phoneNumber.matches("\\d{8}")) {
+                    System.out.println("Invalid, try again!");
+                }
+            } while (!phoneNumber.matches("\\d{8}"));
 
-        Member newMember = new Member(name, dateOfBirth, email, phoneNumber, address);
-        members.add(newMember);
-        CsvFileHandler.writeMembersToCsv(members);
 
-        System.out.println("Member created successfully.");
+            String address;
+                System.out.println("Enter Address:");
+                address = scanner.nextLine();
+
+
+            String team;
+                System.out.println("Enter Team:");
+                team = scanner.nextLine();
+
+
+            String recordSwimmingTime;
+                System.out.println("Enter Record Swimming Time:");
+                recordSwimmingTime = scanner.nextLine();
+
+
+            Member newMember = new Member(name, dateOfBirth, email, phoneNumber, address);
+            members.add(newMember);
+            CsvFileHandler.writeMembersToCsv(members);
+
+            System.out.println("Member created successfully.");
+        } catch (Exception e) {
+            System.out.println("Invalid Input. " + e.getMessage() + " Please try again.");
+        }
     }
+
 
     private void addCoach() {
         Scanner scanner = new Scanner(System.in);

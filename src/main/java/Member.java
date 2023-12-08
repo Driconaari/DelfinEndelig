@@ -16,7 +16,7 @@ public class Member {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber = String.valueOf(phoneNumber);
         this.address = address;
     }
 
