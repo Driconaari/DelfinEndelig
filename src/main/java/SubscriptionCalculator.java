@@ -3,7 +3,7 @@ import java.time.format.DateTimeFormatter;
 
 public class SubscriptionCalculator {
 
-    private static final double BASE_COST = 400.0;
+    private static final double BASE_COST = 1600;
     private static final double DISCOUNT_PERCENTAGE = 0.25;
     private static final double JUNIOR_DISCOUNT_PERCENTAGE = 0.10; // Additional discount for junior members
     private static final int AGE_DISCOUNT_THRESHOLD = 45;
