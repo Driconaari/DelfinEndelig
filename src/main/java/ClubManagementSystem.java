@@ -22,77 +22,7 @@ public class ClubManagementSystem {
 
 
 
-    public void run() {
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.println("\nChoose an option:");
-            System.out.println("1. View Members");
-            System.out.println("2. Create Member");
-            System.out.println("3. Edit Member");
-            System.out.println("4. Calculate Dues Income");
-            System.out.println("5. markMemberAsCompetitiveSwimmer");
-            System.out.println("6. viewCompetitiveSwimmers");
-            System.out.println("7. Calculate and display subscription cost for each member");
-            System.out.println("8. View Top Swimmers");
-            System.out.println("9. View Teams and Coaches");
-            System.out.println("10. Exit");
-
-
-            int choice = scanner.nextInt();
-            scanner.nextLine();  // Consume the newline character
-
-            switch (choice) {
-                case 1:
-                    viewMembers();
-                    break;
-                case 2:
-                    createMember();
-                    break;
-                case 3:
-                    editMember();
-                    break;
-                case 4:
-                    double totalDuesIncome = calculateTotalDuesIncome();
-                    System.out.println("Total expected dues income for the club: DKK" + totalDuesIncome);
-                    break;
-                case 5:
-                    markMemberAsCompetitiveSwimmer();
-                    break;
-                case 6:
-                    viewCompetitiveSwimmers();
-                    break;
-                case 7:
-                    // Calculate and display subscription cost for each member
-                    System.out.println("Subscription Costs:");
-                    for (Member member : members) {
-                        double subscriptionCost = SubscriptionCalculator.calculateSubscriptionCost(
-                                member.getDateOfBirth(),
-                                member.isCompetitiveSwimmer()
-                        );
-                        System.out.println(member.getName() + ": DKK" + subscriptionCost);
-                    }
-                    break;
-
-
-                case 8:
-                    topSwimmers.viewTopSwimmers();
-                    break;
-                case 9:
-                    viewTeamsAndCoaches(coaches, members); // Pass the lists as parameters
-                    break;
-                case 10:
-                    System.out.println("Exiting the system.");
-                    CsvFileHandler.writeMembersToCsv(members);
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        }
-    }
-
-    private void viewTeamsAndCoaches(List<Coach> coaches, List<Member> members) {
+    public void viewTeamsAndCoaches(List<Coach> coaches, List<Member> members) {
         System.out.println("Teams and Coaches:");
         for (String team : getDistinctTeams(members)) {
             System.out.println("Team: " + team);
@@ -115,7 +45,7 @@ public class ClubManagementSystem {
                 .collect(Collectors.toList());
     }
 
-    private void viewCompetitiveSwimmers() {
+    void viewCompetitiveSwimmers() {
         System.out.println("Competitive Swimmers:");
         for (Member member : members) {
             if (member.isCompetitiveSwimmer()) {
@@ -144,7 +74,7 @@ public class ClubManagementSystem {
     }
 
 
-    private void markMemberAsCompetitiveSwimmer() {
+    void markMemberAsCompetitiveSwimmer() {
         Scanner scanner = new Scanner(System.in);
 
         // Display a list of members with indices
@@ -179,7 +109,7 @@ public class ClubManagementSystem {
     }
 
 
-    private double calculateTotalDuesIncome() {
+    double calculateTotalDuesIncome() {
         double totalDuesIncome = 0.0;
 
         for (Member member : members) {
@@ -191,14 +121,14 @@ public class ClubManagementSystem {
     }
 
 
-    private void viewMembers() {
+    void viewMembers() {
         System.out.println("Members:");
         for (Member member : members) {
             System.out.println(member);
         }
     }
 
-    private void createMember() {
+    void createMember() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter Name:");
@@ -244,7 +174,7 @@ public class ClubManagementSystem {
         System.out.println("Coach added successfully.");
     }
 
-    private void editMember() {
+    void editMember() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter the name of the member to edit:");
@@ -302,6 +232,27 @@ public class ClubManagementSystem {
             System.out.println("No member found with the given name.");
         }
     }
+    public void calculateAndDisplaySubscriptionCostForAllMembers() {
+        System.out.println("Subscription Costs:");
+        for (Member member : members) {
+            double subscriptionCost = SubscriptionCalculator.calculateSubscriptionCost(
+                    member.getDateOfBirth(),
+                    member.isCompetitiveSwimmer()
+            );
+            System.out.println(member.getName() + ": DKK" + subscriptionCost);
+        }
+    }
 
+    public void saveMembersToCsv() {
+        CsvFileHandler.writeMembersToCsv(members);
+    }
+
+    public List<Coach> getCoaches() {
+        return this.coaches;
+    }
+
+    public List<Member> getMembers() {
+        return this.members;
+    }
 
 }

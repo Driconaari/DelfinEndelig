@@ -7,8 +7,9 @@ public class Member {
     private String email;
     private String phoneNumber;
     private String address;
-    private String team; // New field
-    private String recordSwimmingTime; // New field
+    private String team;
+    private String recordSwimmingTime;
+    private String Text;
     private boolean isCompetitiveSwimmer;
 
     public Member(String name, String dateOfBirth, String email, String phoneNumber, String address) {
@@ -35,6 +36,15 @@ public class Member {
 
     @Override
     public String toString() {
+        return String.format(
+                "Name:" + name +
+                "  Team:" + team +
+                "  Time:" + recordSwimmingTime +
+                "  " +        isCompetitiveSwimmer());//, email, phoneNumber, address, team, (recordSwimmingTime != null ? "'" + recordSwimmingTime + "'" : "null"), isCompetitiveSwimmer());
+    }
+
+    /*@Override
+    public String toString() {
         return String.format("Member{%n" +
                 "  name='%s',%n" +
                 "  dateOfBirth='%s',%n" +
@@ -45,7 +55,7 @@ public class Member {
                 "  recordSwimmingTime=%s,%n" +
                 "  competitiveSwimmer=%b%n" +
                 "}", name, dateOfBirth, email, phoneNumber, address, team, (recordSwimmingTime != null ? "'" + recordSwimmingTime + "'" : "null"), isCompetitiveSwimmer());
-    }
+    }*/
 
     public boolean isCompetitiveSwimmer() {
         // Check if the member has a non-null and non-empty record swimming time
