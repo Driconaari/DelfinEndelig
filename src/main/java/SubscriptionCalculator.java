@@ -5,8 +5,8 @@ public class SubscriptionCalculator {
 
     private static final double BASE_COST = 1600;
     private static final double DISCOUNT_PERCENTAGE = 0.25;
-    private static final double JUNIOR_DISCOUNT_PERCENTAGE = 0.10; // Additional discount for junior members
-    private static final int AGE_DISCOUNT_THRESHOLD = 45;
+    private static final double JUNIOR_DISCOUNT_PERCENTAGE = 0.60; // Additional discount for junior members
+    private static final int AGE_DISCOUNT_THRESHOLD = 60;
 
     public static double calculateSubscriptionCost(String dateOfBirth, boolean isCompetitiveSwimmer) {
         double baseCost = BASE_COST;
@@ -21,7 +21,7 @@ public class SubscriptionCalculator {
         }
 
         if (isJuniorMember(dateOfBirth)) {
-            baseCost *= (1 - JUNIOR_DISCOUNT_PERCENTAGE); // Apply additional discount for junior members
+            baseCost *= (0.40 - JUNIOR_DISCOUNT_PERCENTAGE); // Apply additional discount for junior members
         }
 
         return baseCost;

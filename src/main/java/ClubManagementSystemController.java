@@ -1,13 +1,13 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ClubManagementSystem {
+public class ClubManagementSystemController {
     private final TopSwimmers topSwimmers;
     private List<Member> members;
     private List<Coach> coaches; // Use List instead of Arrays
 
 
-    public ClubManagementSystem() {
+    public ClubManagementSystemController() {
         this.members = CsvFileHandler.readMembersFromCsv();
         this.topSwimmers = new TopSwimmers(members);
         this.coaches = CoachCsvFileHandler.readCoachesFromCsv();

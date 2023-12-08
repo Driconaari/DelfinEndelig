@@ -2,12 +2,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
-    private final ClubManagementSystem clubSystem;
+    private final ClubManagementSystemController clubSystem;
     private TopSwimmers topSwimmers;
     private List<Member> members;
 
     public UserInterface() {
-        this.clubSystem = new ClubManagementSystem();
+        this.clubSystem = new ClubManagementSystemController();
         this.members = clubSystem.getMembers();  // Initialize members here
         this.topSwimmers = new TopSwimmers(members);  // Pass the initialized members list
     }
