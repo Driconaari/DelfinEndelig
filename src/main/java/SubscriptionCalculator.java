@@ -6,30 +6,41 @@ public class SubscriptionCalculator {
     private static final double BASE_COST_SENIOR = 1600.0;
     private static final double BASE_COST_PASSIVE = 500.0;
     private static final double DISCOUNT_PERCENTAGE_60_PLUS = 0.25;
-    private static final double JUNIOR_DISCOUNT_PERCENTAGE = 0.25;
+
+    // Additional constant for passive discount
+    private static final double PASSIVE_DISCOUNT_PERCENTAGE = 0.0;
 
     public static double calculateSubscriptionCost(String dateOfBirth, boolean competitiveSwimmer, String recordSwimmingTime) {
-        boolean isPassive = isPassiveMember(competitiveSwimmer);
+        boolean isPassive = isPassiveMember(competitiveSwimmer, recordSwimmingTime);
         boolean isJunior = isJuniorMember(dateOfBirth);
         boolean isSenior60Plus = isSeniorMemberOver60(dateOfBirth);
 
         if (isPassive) {
-            return BASE_COST_PASSIVE * (isSenior60Plus ? (1 - DISCOUNT_PERCENTAGE_60_PLUS) : 1);
+            // Apply discount only for passive members
+            return BASE_COST_PASSIVE * (isSenior60Plus ? (1 - DISCOUNT_PERCENTAGE_60_PLUS) : (1 - PASSIVE_DISCOUNT_PERCENTAGE));
         } else if (isJunior) {
-            return BASE_COST_JUNIOR * (competitiveSwimmer ? 1 : (1 - JUNIOR_DISCOUNT_PERCENTAGE));
+            return BASE_COST_JUNIOR;
+        } else if (isSenior60Plus) {
+            return BASE_COST_SENIOR * (1 - DISCOUNT_PERCENTAGE_60_PLUS);
         } else {
-            return BASE_COST_SENIOR * (isSenior60Plus ? (1 - DISCOUNT_PERCENTAGE_60_PLUS) : 1);
+            return BASE_COST_SENIOR;  // For seniors under 60 without special conditions
         }
-    }
-
-    private static boolean isPassiveMember(boolean competitiveSwimmer) {
-        return !competitiveSwimmer;
     }
 
     private static boolean isJuniorMember(String dateOfBirth) {
         int ageThreshold = 18;
         int age = calculateAge(dateOfBirth);
         return age < ageThreshold;
+    }
+
+
+    private static boolean isPassiveMember(boolean competitiveSwimmer, String recordSwimmingTime) {
+        if (!competitiveSwimmer) {
+            return true; // Non-competitive swimmers are always passive
+        }
+
+        // Check if the recordSwimmingTime is in the specific format like "1:52.32"
+        return recordSwimmingTime == null || !recordSwimmingTime.matches("\\d+:\\d{2}\\.\\d{2}");
     }
 
     private static boolean isSeniorMemberOver60(String dateOfBirth) {
