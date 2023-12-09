@@ -1,21 +1,28 @@
-Name,DateOfBirth,Email,PhoneNumber,Address,Team,RecordSwimmingTime
-John Doe,1990-05-15,johndoe@email.com,1234567890,123 Main St,TeamA,1:30.45
-Jane Smith,1988-08-22,janesmith@email.com,9876543210,456 Oak St,TeamB,1:25.20
-Bob Johnson,1995-02-10,bobjohnson@email.com,5558889999,789 Pine St,TeamC,1:40.60
-Alice Lee,1992-11-18,alicelee@email.com,1112223333,987 Elm St,TeamA,1:28.75
-Charlie Brown,1987-04-05,charliebrown@email.com,9998887777,654 Birch St,TeamB,1:33.90
-Eva Davis,1998-09-30,evadavis@email.com,4443332222,321 Maple St,TeamC,1:42.30
-Bob Chesterman,2001-02-23,Bob@mail.com,23232323,bovej,TeamA,0:54.12
-Emma Johnson,2007-03-10,emma@email.com,1234567890,123 Main St,TeamA,1:30.45
-Ethan Smith,2006-05-22,ethan@email.com,9876543210,456 Oak St,TeamB,1:25.20
-Olivia Davis,2008-01-15,olivia@email.com,5558889999,789 Pine St,TeamC,1:40.60
-Noah Lee,2009-09-18,noah@email.com,1112223333,987 Elm St,TeamA,1:28.75
-Sophia Brown,2007-12-05,sophia@email.com,9998887777,654 Birch St,Jr passive,
-Liam Wilson,2008-04-30,liam@email.com,4443332222,321 Maple St,Jr passive,
-Senior Member 1,1960-01-01,seniormember1@email.com,555-555-5555,Senior Address 1,Team A,2:47.30
-Senior Member 2,1960-01-01,seniormember2@email.com,555-555-5555,Senior Address 2,Sr passive,
-Senior Member 3,1960-01-01,seniormember3@email.com,555-555-5555,Senior Address 3,Sr passive,
-Senior Member 4,1960-01-01,seniormember4@email.com,555-555-5555,Senior Address 4,Sr passive,
-Senior Member 5,1960-01-01,seniormember5@email.com,555-555-5555,Senior Address 5,Sr passive,
-Bob Bobman,2004-05-22,bob@mail.com,27738383,bovej,backstroke,null1
-carl Carlson,2001-04-22,carl@mail.com,29383833,carlvej,butterfly,1:23.23
+Alice Anderson,2015-02-10,alice@mail.com,12345678,123 Avenue,freestyle,
+Bob Bobman,1998-07-18,bob@mail.com,98765432,456 Street,backstroke,2:10.45
+Charlie Carlson,1985-11-30,charlie@mail.com,87654321,789 Road,breaststroke,3:45.67
+David Davidson,1972-04-05,david@mail.com,23456789,101 Lane,butterfly,1:30.12
+Emma Evans,2005-09-15,emma@mail.com,34567890,202 Boulevard,freestyle,
+Frank Franklin,1990-12-20,frank@mail.com,87654321,303 Park,backstroke,2:20.34
+Grace Grayson,1982-03-25,grace@mail.com,98765432,404 Plaza,breaststroke,4:00.98
+Henry Henderson,1978-08-07,henry@mail.com,23456789,505 Square,butterfly,1:45.67
+Ivy Ingram,2012-01-12,ivy@mail.com,34567890,606 Court,freestyle,
+JEsper Ingram,2012-01-12,ivy@mail.com,34567890,606 Court,freestyle,1:45.67
+Mads Ingram,2012-01-12,ivy@mail.com,34567890,606 Court,freestyle,1:25.67
+Vigoo Ingram,2012-01-12,ivy@mail.com,34567890,606 Court,freestyle,1:35.67
+Jack Jackson,2000-06-28,jack@mail.com,12345678,707 Drive,backstroke,2:45.67
+Kate Kensington,1995-10-03,kate@mail.com,87654321,808 Alley,breaststroke,3:15.89
+Liam Lively,1988-02-18,liam@mail.com,98765432,909 Way,butterfly,1:58.12
+Olivia Owens,2010-07-24,olivia@mail.com,23456789,010 Terrace,freestyle,
+Peter Peterson,2003-11-08,peter@mail.com,34567890,111 Garden,backstroke,2:34.56
+Quinn Quinn,1997-04-14,quinn@mail.com,12345678,222 Cove,breaststroke,3:30.45
+Ryan Ryder,1984-09-29,ryan@mail.com,87654321,333 Harbor,butterfly,1:15.34
+Sophia Smith,1970-01-04,sophia@mail.com,98765432,444 Beach,freestyle,
+Thomas Thompson,2014-05-19,thomas@mail.com,23456789,555 Bay,backstroke,2:15.67
+Ursula Underwood,1981-10-13,ursula@mail.com,34567890,666 Inlet,breaststroke,3:20.78
+Violet Vance,1992-03-27,violet@mail.com,12345678,777 Lagoon,butterfly,1:40.89
+William Williams,1975-08-11,william@mail.com,87654321,888 Cove,freestyle,
+Xavier Xander,2008-12-06,xavier@mail.com,98765432,999 Cove,backstroke,2:56.78
+Yvonne Yates,1999-04-21,yvonne@mail.com,23456789,000 Beach,breaststroke,3:05.67
+Zane Zimmerman,1987-09-05,zane@mail.com,34567890,123 Reef,butterfly,2:00.45
+Coxer Zimmerman,1947-09-05,zane@mail.com,34567890,123 Reef,butterfly,

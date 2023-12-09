@@ -76,9 +76,11 @@ public class ClubManagementSystemController {
     private double calculateSubscriptionCost(Member member) {
         return SubscriptionCalculator.calculateSubscriptionCost(
                 member.getDateOfBirth(),
-                member.isCompetitiveSwimmer()
+                member.isCompetitiveSwimmer(),
+                member.getRecordSwimmingTime()
         );
     }
+
 
 
 
@@ -328,8 +330,8 @@ public class ClubManagementSystemController {
         for (Member member : members) {
             double subscriptionCost = SubscriptionCalculator.calculateSubscriptionCost(
                     member.getDateOfBirth(),
-                    member.isCompetitiveSwimmer()
-            );
+                    member.isCompetitiveSwimmer(),
+                    member.getRecordSwimmingTime());
             System.out.println(member.getName() + ": DKK" + subscriptionCost);
         }
     }
