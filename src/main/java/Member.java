@@ -14,7 +14,7 @@ public class Member {
     private String team; // New field
     private String recordSwimmingTime; // New field
     private boolean isCompetitiveSwimmer;
-    private String competitiveSwimmingTime;
+
 
 
     public Member(String name, String dateOfBirth, String email, String phoneNumber, String address) {
@@ -42,13 +42,13 @@ public class Member {
     @Override
     public String toString() {
         return String.format("Member{%n" +
-                "  name='%s',%n" +
-                "  dateOfBirth='%s',%n" +
-                "  email='%s',%n" +
-                "  phoneNumber='%s',%n" +
-                "  address='%s',%n" +
-                "  team='%s',%n" +
-                "  recordSwimmingTime=%s,%n" +
+                "  %s%n" +
+                "  %s%n" +
+                "  %s%n" +
+                "  %s%n" +
+                "  %s%n" +
+                "  %s%n" +
+                "  recordSwimmingTime=%s%n" +
                 "  competitiveSwimmer=%b%n" +
                 "}", name, dateOfBirth, email, phoneNumber, address, team, (recordSwimmingTime != null ? "'" + recordSwimmingTime + "'" : "null"), isCompetitiveSwimmer());
     }

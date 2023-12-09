@@ -1,13 +1,13 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ClubManagementSystem {
+public class ClubManagementSystemController {
     private final TopSwimmers topSwimmers;
     private List<Member> members;
     private List<Coach> coaches; // Use List instead of Arrays
 
 
-    public ClubManagementSystem() {
+    public ClubManagementSystemController() {
         this.members = CsvFileHandler.readMembersFromCsv();
         this.topSwimmers = new TopSwimmers(members);
         this.coaches = CoachCsvFileHandler.readCoachesFromCsv();
@@ -227,21 +227,6 @@ public class ClubManagementSystem {
         CsvFileHandler.writeMembersToCsv(members);
 
         System.out.println("Member created successfully.");
-    }
-
-    private void addCoach() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter Coach Name:");
-        String name = scanner.nextLine();
-
-        System.out.println("Enter Coach Team:");
-        String team = scanner.nextLine();
-
-        Coach newCoach = new Coach(name, team);
-        coaches.add(newCoach);
-
-        System.out.println("Coach added successfully.");
     }
 
     private void editMember() {
