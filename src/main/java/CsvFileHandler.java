@@ -19,17 +19,17 @@ public class CsvFileHandler {
 
                 String[] data = line.split(",", -1);
 
-                if (data.length >= 8) {
+                if (data.length >= 7) {
                     String name = data[0].trim();
                     String dateOfBirth = data[1].trim();
                     String email = data[2].trim();
                     String phoneNumber = data[3].trim();
                     String address = data[4].trim();
-                    String teams = data[5].trim();
+                    String team = data[5].trim();
                     String recordSwimmingTime = data[6].trim();
 
-                    Member member = new Member(name, dateOfBirth, email, phoneNumber, address, teams);
-                    member.setTeam(teams);
+                    Member member = new Member(name, dateOfBirth, email, phoneNumber, address, team);
+                    member.setTeam(team);
                     member.setRecordSwimmingTime(recordSwimmingTime);
 
                     members.add(member);
@@ -45,10 +45,10 @@ public class CsvFileHandler {
 
     public static void writeMembersToCsv(List<Member> members) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(CSV_FILE_PATH))) {
-            // Write header
+            //Write header
             writer.println("Name,DateOfBirth,Email,PhoneNumber,Address,Team,RecordSwimmingTime");
 
-            // Write member data
+            //Write member data
             for (Member member : members) {
                 writer.println(
                         member.getName() + "," +
