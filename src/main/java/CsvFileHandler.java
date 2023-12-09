@@ -19,17 +19,17 @@ public class CsvFileHandler {
 
                 String[] data = line.split(",", -1);
 
-                if (data.length >= 7) {
+                if (data.length >= 8) {
                     String name = data[0].trim();
                     String dateOfBirth = data[1].trim();
                     String email = data[2].trim();
                     String phoneNumber = data[3].trim();
                     String address = data[4].trim();
-                    String team = data[5].trim();
+                    String teams = data[5].trim();
                     String recordSwimmingTime = data[6].trim();
 
-                    Member member = new Member(name, dateOfBirth, email, phoneNumber, address, team);
-                    member.setTeam(team);
+                    Member member = new Member(name, dateOfBirth, email, phoneNumber, address, teams);
+                    member.setTeam(teams);
                     member.setRecordSwimmingTime(recordSwimmingTime);
 
                     members.add(member);

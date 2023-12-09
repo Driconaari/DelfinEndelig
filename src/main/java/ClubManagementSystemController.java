@@ -7,7 +7,7 @@ public class ClubManagementSystemController {
     private final TopSwimmers topSwimmers;
     private List<Member> members;
     private List<Coach> coaches;
-    private List<String> teams;
+    private List<String> team;
 
 
     public void start() {
@@ -68,7 +68,7 @@ public class ClubManagementSystemController {
         this.members = CsvFileHandler.readMembersFromCsv();
         this.topSwimmers = new TopSwimmers(members);
         this.coaches = CoachCsvFileHandler.readCoachesFromCsv();
-        this.teams = getTeams();
+        this.team = getTeam();
     }
 
     private double calculateSubscriptionCost(Member member) {
@@ -358,8 +358,8 @@ public class ClubManagementSystemController {
         return this.members;
     }
 
-    public List<String> getTeams() {
-        return teams;
+    public List<String> getTeam() {
+        return team;
     }
 
 }
