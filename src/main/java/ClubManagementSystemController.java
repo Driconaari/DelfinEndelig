@@ -249,7 +249,7 @@ public class ClubManagementSystemController {
                 recordSwimmingTime = scanner.nextLine();*/
 
 
-            Member newMember = new Member(name, dateOfBirth, email, phoneNumber, address);
+            Member newMember = new Member(name, dateOfBirth, email, phoneNumber, address, team);
             members.add(newMember);
             CsvFileHandler.writeMembersToCsv(members);
 

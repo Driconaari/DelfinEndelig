@@ -28,7 +28,7 @@ public class CsvFileHandler {
                     String team = data[5].trim();
                     String recordSwimmingTime = data[6].trim();
 
-                    Member member = new Member(name, dateOfBirth, email, phoneNumber, address);
+                    Member member = new Member(name, dateOfBirth, email, phoneNumber, address, team);
                     member.setTeam(team);
                     member.setRecordSwimmingTime(recordSwimmingTime);
 
