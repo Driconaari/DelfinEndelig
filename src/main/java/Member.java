@@ -1,9 +1,5 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Scanner;
-import java.time.format.DateTimeFormatter;
 
 public class Member {
     private String name;
@@ -11,21 +7,20 @@ public class Member {
     private String email;
     private String phoneNumber;
     private String address;
-    private String team; // New field
-    private String recordSwimmingTime; // New field
+    private String team;
+    private String recordSwimmingTime;
+    private String Text;
     private boolean isCompetitiveSwimmer;
-
-
 
     public Member(String name, String dateOfBirth, String email, String phoneNumber, String address) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber = String.valueOf(phoneNumber);
         this.address = address;
     }
 
-    // Getters and setters for new fields
+    //Getters and setters for new fields
     public String getTeam() {
         return team;
     }
@@ -34,7 +29,7 @@ public class Member {
         return recordSwimmingTime;
     }
 
-    // Convert Member to CSV format
+    //Convert Member to CSV format
     public String toCsvString() {
         return name + "," + dateOfBirth + "," + email + "," + phoneNumber + "," + address + "," + team + "," + recordSwimmingTime;
     }
@@ -53,8 +48,9 @@ public class Member {
                 "}", name, dateOfBirth, email, phoneNumber, address, team, (recordSwimmingTime != null ? "'" + recordSwimmingTime + "'" : "null"), isCompetitiveSwimmer());
     }
 
+
     public boolean isCompetitiveSwimmer() {
-        // Check if the member has a non-null and non-empty record swimming time
+        //Check if the member has a non-null and non-empty record swimming time
         return recordSwimmingTime != null && !recordSwimmingTime.trim().isEmpty();
     }
 
@@ -80,11 +76,11 @@ public class Member {
     }
 
     public int getAge() {
-        // Assuming dateOfBirth is in the format 'yyyy-MM-dd'
+        //Assuming dateOfBirth is in the format 'yyyy-MM-dd'
         LocalDate birthDate = LocalDate.parse(dateOfBirth);
         LocalDate currentDate = LocalDate.now();
 
-        // Calculate the age
+        //Calculate the age
         return Period.between(birthDate, currentDate).getYears();
     }
 
@@ -92,7 +88,7 @@ public class Member {
         this.isCompetitiveSwimmer = isCompetitiveSwimmer;
     }
 
-    // Setter methods
+    //Setter methods
     public void setName(String name) {
         this.name = name;
     }
@@ -113,7 +109,7 @@ public class Member {
         this.address = address;
     }
 
-    // Additional setter methods
+    //Additional setter methods
     public void setTeam(String team) {
         this.team = team;
     }
@@ -121,6 +117,4 @@ public class Member {
     public void setRecordSwimmingTime(String recordSwimmingTime) {
         this.recordSwimmingTime = recordSwimmingTime;
     }
-
-
 }

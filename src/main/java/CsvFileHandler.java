@@ -14,7 +14,7 @@ public class CsvFileHandler {
             while ((line = br.readLine()) != null) {
                 if (!headerSkipped) {
                     headerSkipped = true;
-                    continue; // Skip the header
+                    continue;
                 }
 
                 String[] data = line.split(",", -1);

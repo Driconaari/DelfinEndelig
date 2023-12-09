@@ -2,51 +2,50 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class SubscriptionCalculator {
-    private static final double BASE_COST_JUNIOR = 1000.0   ;
-    private static final double BASE_COST_SENIOR = 1600.0;
-    private static final double BASE_COST_PASSIVE = 500.0;
-    private static final double DISCOUNT_PERCENTAGE_60_PLUS = 0.25;
-    private static final double JUNIOR_DISCOUNT_PERCENTAGE = 0.25;
 
-    public static double calculateSubscriptionCost(String dateOfBirth, boolean competitiveSwimmer) {
-        boolean isPassive = isPassiveMember(competitiveSwimmer);
-        boolean isJunior = isJuniorMember(dateOfBirth);
-        boolean isSenior60Plus = isSeniorMemberOver60(dateOfBirth);
+    private static final double BASE_COST = 1600;
+    private static final double DISCOUNT_PERCENTAGE = 0.25;
+    private static final double JUNIOR_DISCOUNT_PERCENTAGE = 0.60; // Additional discount for junior members
+    private static final int AGE_DISCOUNT_THRESHOLD = 60;
 
-        if (isPassive) {
-            return BASE_COST_PASSIVE * (isSenior60Plus ? (1 - DISCOUNT_PERCENTAGE_60_PLUS) : 1);
-        } else if (isJunior) {
-            return BASE_COST_JUNIOR * (competitiveSwimmer ? 1 : (1 - JUNIOR_DISCOUNT_PERCENTAGE));
-        } else {
-            return BASE_COST_SENIOR * (isSenior60Plus ? (1 - DISCOUNT_PERCENTAGE_60_PLUS) : 1);
+    public static double calculateSubscriptionCost(String dateOfBirth, boolean isCompetitiveSwimmer) {
+        double baseCost = BASE_COST;
+
+        if (isCompetitiveSwimmer) {
+            // Apply a discount for competitive swimmers
+            baseCost *= (1 - DISCOUNT_PERCENTAGE);
         }
+
+        if (isOverAgeThreshold(dateOfBirth, AGE_DISCOUNT_THRESHOLD)) {
+            baseCost *= (1 - DISCOUNT_PERCENTAGE); // Apply discount for members over the age threshold
+        }
+
+        if (isJuniorMember(dateOfBirth)) {
+            baseCost *= (0.40 - JUNIOR_DISCOUNT_PERCENTAGE); // Apply additional discount for junior members
+        }
+
+        return baseCost;
     }
 
-    private static boolean isPassiveMember(boolean competitiveSwimmer) {
-        return !competitiveSwimmer;
+    private static boolean isOverAgeThreshold(String dateOfBirth, int ageThreshold) {
+        int currentYear = LocalDate.now().getYear();
+        int birthYear = getYearFromDateOfBirth(dateOfBirth);
+        int age = currentYear - birthYear;
+
+        return age > ageThreshold;
     }
 
     private static boolean isJuniorMember(String dateOfBirth) {
-        int ageThreshold = 18;
-        int age = calculateAge(dateOfBirth);
-        return age < ageThreshold;
+        int currentYear = LocalDate.now().getYear();
+        int birthYear = getYearFromDateOfBirth(dateOfBirth);
+        int age = currentYear - birthYear;
+
+        return age < 18;
     }
 
-    private static boolean isSeniorMemberOver60(String dateOfBirth) {
-        int ageThreshold = 60;
-        int age = calculateAge(dateOfBirth);
-        return age >= ageThreshold;
-    }
-
-    private static int calculateAge(String dateOfBirth) {
-        if (dateOfBirth == null || dateOfBirth.isEmpty()) {
-            return 0; // Handle the case where dateOfBirth is null or empty
-        }
-
+    private static int getYearFromDateOfBirth(String dateOfBirth) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate birthDate = LocalDate.parse(dateOfBirth, formatter);
-        LocalDate currentDate = LocalDate.now();
-
-        return currentDate.getYear() - birthDate.getYear();
+        return birthDate.getYear();
     }
 }

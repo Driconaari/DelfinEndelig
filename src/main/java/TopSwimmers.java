@@ -23,22 +23,29 @@ public class TopSwimmers {
         displayTopSwimmers(getTopSwimmers("senior"));
     }
 
-
     private List<Member> getTopSwimmers(String category) {
         // Implement logic to retrieve the top 5 swimmers for the specified category
         // You can sort the competitive swimmers based on their performance and return the top 5
         // For simplicity, I'll assume that the members list contains only competitive swimmers
         List<Member> competitiveSwimmers = new ArrayList<>(members);
 
+        // Filter swimmers by category
+        competitiveSwimmers = competitiveSwimmers.stream()
+                .filter(member -> (category.equals("junior") && member.getAge() < 18) ||
+                        (category.equals("senior") && member.getAge() >= 18))
+                .collect(Collectors.toList());
+
+        // Check if there are enough competitive swimmers to display
+        if (competitiveSwimmers.size() < 5) {
+            System.out.println("Not enough competitive swimmers to display.");
+            return competitiveSwimmers;
+        }
+
         // Sort competitiveSwimmers based on performance (you may need to modify this based on your data model)
         competitiveSwimmers.sort(Comparator.comparing(Member::getRecordSwimmingTime));
 
-        // Filter swimmers by category
-        return competitiveSwimmers.stream()
-                .filter(member -> (category.equals("junior") && member.getAge() < 18) ||
-                        (category.equals("senior") && member.getAge() >= 18))
-                .limit(5)
-                .collect(Collectors.toList());
+        // Return the top 5 swimmers
+        return competitiveSwimmers.subList(0, 5);
     }
 
     private void displayTopSwimmers(List<Member> topSwimmers) {
