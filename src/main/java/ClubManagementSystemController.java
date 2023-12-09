@@ -6,19 +6,18 @@ import java.util.Scanner;
 public class ClubManagementSystemController {
     private final TopSwimmers topSwimmers;
     private List<Member> members;
-    private List<Coach> coaches; // Use List instead of Arrays
+    private List<Coach> coaches;
     private List<String> teams;
 
 
     public void start() {
-
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
             try {
             UserInterface.displayMainMenu();
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -63,6 +62,7 @@ public class ClubManagementSystemController {
             }
        }
     }
+
 
     public ClubManagementSystemController() {
         this.members = CsvFileHandler.readMembersFromCsv();
@@ -133,21 +133,21 @@ public class ClubManagementSystemController {
     void markMemberAsCompetitiveSwimmer() {
         Scanner scanner = new Scanner(System.in);
 
-        // Display a list of members with indices
+        //Display a list of members with indices
         System.out.println("List of Members:");
         for (int i = 0; i < members.size(); i++) {
             System.out.println(i + 1 + ". " + members.get(i).getName());
         }
 
-        // Ask the user to enter the name of the member
+        //Ask the user to enter the name of the member
         System.out.print("Enter the name of the member to mark as a competitive swimmer: ");
         String selectedName = scanner.nextLine();
 
-        // Find the member with the entered name
+        //Find the member with the entered name
         Member selectedMember = findMemberByName(selectedName);
 
         if (selectedMember != null) {
-            // Mark the selected member as a competitive swimmer
+            //Mark the selected member as a competitive swimmer
             selectedMember.setCompetitiveSwimmer(true);
             System.out.println(selectedMember.getName() + " has been marked as a competitive swimmer.");
         } else {
@@ -244,9 +244,9 @@ public class ClubManagementSystemController {
             } while (!team.matches("freestyle|backstroke|breaststroke|butterfly"));
 
 
-            String recordSwimmingTime;
+            /*String recordSwimmingTime;
                 System.out.println("Enter Record Swimming Time:");
-                recordSwimmingTime = scanner.nextLine();
+                recordSwimmingTime = scanner.nextLine();*/
 
 
             Member newMember = new Member(name, dateOfBirth, email, phoneNumber, address);

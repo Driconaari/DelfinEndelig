@@ -20,7 +20,7 @@ public class Member {
         this.address = address;
     }
 
-    // Getters and setters for new fields
+    //Getters and setters for new fields
     public String getTeam() {
         return team;
     }
@@ -29,36 +29,28 @@ public class Member {
         return recordSwimmingTime;
     }
 
-    // Convert Member to CSV format
+    //Convert Member to CSV format
     public String toCsvString() {
         return name + "," + dateOfBirth + "," + email + "," + phoneNumber + "," + address + "," + team + "," + recordSwimmingTime;
     }
 
     @Override
     public String toString() {
-        return String.format(
-                "Name:" + name +
-                "  Team:" + team +
-                "  Time:" + recordSwimmingTime +
-                "  " +        isCompetitiveSwimmer());//, email, phoneNumber, address, team, (recordSwimmingTime != null ? "'" + recordSwimmingTime + "'" : "null"), isCompetitiveSwimmer());
-    }
-
-    /*@Override
-    public String toString() {
         return String.format("Member{%n" +
-                "  name='%s',%n" +
-                "  dateOfBirth='%s',%n" +
-                "  email='%s',%n" +
-                "  phoneNumber='%s',%n" +
-                "  address='%s',%n" +
-                "  team='%s',%n" +
-                "  recordSwimmingTime=%s,%n" +
+                "  %s%n" +
+                "  %s%n" +
+                "  %s%n" +
+                "  %s%n" +
+                "  %s%n" +
+                "  %s%n" +
+                "  recordSwimmingTime=%s%n" +
                 "  competitiveSwimmer=%b%n" +
                 "}", name, dateOfBirth, email, phoneNumber, address, team, (recordSwimmingTime != null ? "'" + recordSwimmingTime + "'" : "null"), isCompetitiveSwimmer());
-    }*/
+    }
+
 
     public boolean isCompetitiveSwimmer() {
-        // Check if the member has a non-null and non-empty record swimming time
+        //Check if the member has a non-null and non-empty record swimming time
         return recordSwimmingTime != null && !recordSwimmingTime.trim().isEmpty();
     }
 
@@ -84,11 +76,11 @@ public class Member {
     }
 
     public int getAge() {
-        // Assuming dateOfBirth is in the format 'yyyy-MM-dd'
+        //Assuming dateOfBirth is in the format 'yyyy-MM-dd'
         LocalDate birthDate = LocalDate.parse(dateOfBirth);
         LocalDate currentDate = LocalDate.now();
 
-        // Calculate the age
+        //Calculate the age
         return Period.between(birthDate, currentDate).getYears();
     }
 
@@ -96,7 +88,7 @@ public class Member {
         this.isCompetitiveSwimmer = isCompetitiveSwimmer;
     }
 
-    // Setter methods
+    //Setter methods
     public void setName(String name) {
         this.name = name;
     }
@@ -117,7 +109,7 @@ public class Member {
         this.address = address;
     }
 
-    // Additional setter methods
+    //Additional setter methods
     public void setTeam(String team) {
         this.team = team;
     }

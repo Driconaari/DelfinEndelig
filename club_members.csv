@@ -1,3 +1,18 @@
 Name,DateOfBirth,Email,PhoneNumber,Address,Team,RecordSwimmingTime
-kalli,33333333,kalli@gmail.com,11111111,soss,null,null
-sophus,32323232,sophus@gmil.com,11111111,sosos,null,null
+Jane Smith,1988-08-22,janesmith@email.com,9876543210,456 Oak St,TeamB,1:25.20
+Bob Johnson,1995-02-10,bobjohnson@email.com,5558889999,789 Pine St,TeamC,1:40.60
+Alice Lee,1992-11-18,alicelee@email.com,1112223333,987 Elm St,TeamA,1:28.75
+Charlie Brown,1987-04-05,charliebrown@email.com,9998887777,654 Birch St,TeamB,1:33.90
+Eva Davis,1998-09-30,evadavis@email.com,4443332222,321 Maple St,TeamC,1:42.30
+Bob Chesterman,2001-02-23,Bob@mail.com,23232323,bovej,TeamA,0:54.12
+Emma Johnson,2007-03-10,emma@email.com,1234567890,123 Main St,TeamA,1:28.30
+Ethan Smith,2006-05-22,ethan@email.com,9876543210,456 Oak St,TeamB,1:25.20
+Olivia Davis,2008-01-15,olivia@email.com,5558889999,789 Pine St,TeamC,1:40.60
+Noah Lee,2009-09-18,noah@email.com,1112223333,987 Elm St,TeamA,1:28.75
+Sophia Brown,2007-12-05,sophia@email.com,9998887777,654 Birch St,Jr passive,
+Liam Wilson,2008-04-30,liam@email.com,4443332222,321 Maple St,Jr passive,
+Senior Member 1,1960-01-01,seniormember1@email.com,555-555-5555,Senior Address 1,Team A,2:47.30
+Senior Member 2,1960-01-01,seniormember2@email.com,555-555-5555,Senior Address 2,Sr passive,
+Senior Member 3,1960-01-01,seniormember3@email.com,555-555-5555,Senior Address 3,Sr passive,
+Senior Member 4,1960-01-01,seniormember4@email.com,555-555-5555,Senior Address 4,Sr passive,
+Senior Member 5,1960-01-01,seniormember5@email.com,555-555-5555,Senior Address 5,Sr passive,
