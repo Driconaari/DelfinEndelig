@@ -1,16 +1,74 @@
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.Scanner;
+
 
 public class ClubManagementSystemController {
     private final TopSwimmers topSwimmers;
     private List<Member> members;
     private List<Coach> coaches; // Use List instead of Arrays
+    private List<String> teams;
 
+
+    public void start() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            try {
+            UserInterface.displayMainMenu();
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+
+            switch (choice) {
+                case 1:
+                    viewMembers();
+                    break;
+                case 2:
+                    createMember();
+                    break;
+                case 3:
+                    editMember();
+                    break;
+                case 4:
+                    double totalDuesIncome = calculateTotalDuesIncome();
+                    System.out.println("Total expected dues income for the club: DKK" + totalDuesIncome);
+                    break;
+                case 5:
+                    markMemberAsCompetitiveSwimmer();
+                    break;
+                case 6:
+                    viewCompetitiveSwimmers();
+                    break;
+                case  7:
+                    calculateAndDisplaySubscriptionCostForAllMembers();
+                    break;
+                case 8:
+                    topSwimmers.viewTopSwimmers();
+                    break;
+                case 9:
+                    viewTeamsAndCoaches(getCoaches(), getMembers());
+                    break;
+                case 10:
+                    System.out.println("Exiting the system.");
+                    saveMembersToCsv();
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }catch (InputMismatchException e) {
+                System.out.println("Invalid choice. Please try again.");
+                scanner.nextLine();
+            }
+       }
+    }
 
     public ClubManagementSystemController() {
         this.members = CsvFileHandler.readMembersFromCsv();
         this.topSwimmers = new TopSwimmers(members);
         this.coaches = CoachCsvFileHandler.readCoachesFromCsv();
+        this.teams = getTeams();
     }
 
     private double calculateSubscriptionCost(Member member) {
@@ -126,6 +184,7 @@ public class ClubManagementSystemController {
         }
     }
 
+
     void createMember() {
         Scanner scanner = new Scanner(System.in);
 
@@ -176,8 +235,13 @@ public class ClubManagementSystemController {
 
 
             String team;
-                System.out.println("Enter Team:");
-                team = scanner.nextLine();
+            do {
+                System.out.println("Enter Team (Freestyle, Backstroke, Breaststroke, Butterfly):");
+                team = scanner.nextLine().toLowerCase();
+                if (!team.matches("freestyle|backstroke|breaststroke|butterfly")) {
+                    System.out.println("Invalid input. Please pick one of the styles above!");
+                }
+            } while (!team.matches("freestyle|backstroke|breaststroke|butterfly"));
 
 
             String recordSwimmingTime;
@@ -195,6 +259,7 @@ public class ClubManagementSystemController {
         }
     }
 
+//-------------------------------------------------
 
     private void addCoach() {
         Scanner scanner = new Scanner(System.in);
@@ -210,6 +275,7 @@ public class ClubManagementSystemController {
 
         System.out.println("Coach added successfully.");
     }
+
 
     void editMember() {
         Scanner scanner = new Scanner(System.in);
@@ -290,6 +356,10 @@ public class ClubManagementSystemController {
 
     public List<Member> getMembers() {
         return this.members;
+    }
+
+    public List<String> getTeams() {
+        return teams;
     }
 
 }

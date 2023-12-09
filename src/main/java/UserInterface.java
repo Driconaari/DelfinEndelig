@@ -12,55 +12,9 @@ public class UserInterface {
         this.topSwimmers = new TopSwimmers(members);  // Pass the initialized members list
     }
 
-    public void start() {
-        Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-            displayMainMenu();
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
 
-            switch (choice) {
-                case 1:
-                    clubSystem.viewMembers();
-                    break;
-                case 2:
-                    clubSystem.createMember();
-                    break;
-                case 3:
-                    clubSystem.editMember();
-                    break;
-                case 4:
-                    double totalDuesIncome = clubSystem.calculateTotalDuesIncome();
-                    System.out.println("Total expected dues income for the club: DKK" + totalDuesIncome);
-                    break;
-                case 5:
-                    clubSystem.markMemberAsCompetitiveSwimmer();
-                    break;
-                case 6:
-                    clubSystem.viewCompetitiveSwimmers();
-                    break;
-                case  7:
-                clubSystem.calculateAndDisplaySubscriptionCostForAllMembers();
-                break;
-                case 8:
-                    topSwimmers.viewTopSwimmers();
-                    break;
-                case 9:
-                    clubSystem.viewTeamsAndCoaches(clubSystem.getCoaches(), clubSystem.getMembers());
-                    break;
-                case 10:
-                    System.out.println("Exiting the system.");
-                    clubSystem.saveMembersToCsv();
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        }
-    }
-
-    private void displayMainMenu() {
+    public static void displayMainMenu() {
         System.out.println("\nChoose an option:");
         System.out.println("1. View Members");
         System.out.println("2. Create Member");
