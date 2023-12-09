@@ -9,15 +9,15 @@ public class Member {
     private String address;
     private String team;
     private String recordSwimmingTime;
-    private String Text;
     private boolean isCompetitiveSwimmer;
 
-    public Member(String name, String dateOfBirth, String email, String phoneNumber, String address) {
+    public Member(String name, String dateOfBirth, String email, String phoneNumber, String address, String team) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.phoneNumber = String.valueOf(phoneNumber);
         this.address = address;
+        this.team = team;
     }
 
     //Getters and setters for new fields

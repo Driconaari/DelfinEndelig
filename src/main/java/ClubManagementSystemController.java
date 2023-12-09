@@ -1,11 +1,13 @@
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.Scanner;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class ClubManagementSystemController {
+    private static Scanner scanner = new Scanner(System.in);
     private final TopSwimmers topSwimmers;
-    private List<Member> members;
+    private static List<Member> members;
     private List<Coach> coaches;
     private List<String> teams;
 
@@ -185,54 +187,22 @@ public class ClubManagementSystemController {
     }
 
 
-    void createMember() {
-        Scanner scanner = new Scanner(System.in);
-
+    static void createMember() {
         try {
-            String name;
-            do {
-                System.out.println("Enter Name:");
-                name = scanner.nextLine();
-                if (!name.matches("[a-zA-Z]+")){
-                    System.out.println("Invalid, try again!");
-                }
-            } while (!name.matches("[a-zA-Z]+"));
-
+            String name = getValidatedString("Enter Name:", "[a-zA-Z]+");
 
             String dateOfBirth;
             do {
                 System.out.println("Enter Date of Birth 'yyyy-MM-dd':");
                 dateOfBirth = scanner.nextLine();
-                if (!dateOfBirth.matches("\\d{8}")) {
-                    System.out.println("Invalid, try again!");
+                if (!isValidDateOfBirthFormat(dateOfBirth)) {
+                    System.out.println("Invalid format, try again!");
                 }
-            } while (!dateOfBirth.matches("\\d{8}"));
+            } while (!isValidDateOfBirthFormat(dateOfBirth));
 
-
-            String email;
-            do {
-                System.out.println("Enter Email:");
-                email = scanner.nextLine();
-                if (!email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
-                    System.out.println("Invalid, try again!");
-                }
-            } while (!email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"));
-
-
-            String phoneNumber;
-            do {
-                System.out.println("Enter Phone Number:");
-                phoneNumber = scanner.nextLine();
-                if (!phoneNumber.matches("\\d{8}")) {
-                    System.out.println("Invalid, try again!");
-                }
-            } while (!phoneNumber.matches("\\d{8}"));
-
-
-            String address;
-            System.out.println("Enter Address:");
-            address = scanner.nextLine();
-
+            String email = getValidatedString("Enter Email:", "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
+            String phoneNumber = getValidatedString("Enter Phone Number:", "\\d{8}");
+            String address = scanner.nextLine();
 
             String team;
             do {
@@ -243,19 +213,37 @@ public class ClubManagementSystemController {
                 }
             } while (!team.matches("freestyle|backstroke|breaststroke|butterfly"));
 
-
-            /*String recordSwimmingTime;
-                System.out.println("Enter Record Swimming Time:");
-                recordSwimmingTime = scanner.nextLine();*/
-
-
-            Member newMember = new Member(name, dateOfBirth, email, phoneNumber, address);
+            Member newMember = new Member(name, dateOfBirth, email, phoneNumber, address, team);
             members.add(newMember);
             CsvFileHandler.writeMembersToCsv(members);
 
             System.out.println("Member created successfully.");
         } catch (Exception e) {
             System.out.println("Invalid Input. " + e.getMessage() + " Please try again.");
+        }
+    }
+
+    private static String getValidatedString(String prompt, String regex) {
+        String input;
+        do {
+            System.out.println(prompt);
+            input = scanner.nextLine();
+            if (!input.matches(regex)) {
+                System.out.println("Invalid, try again!");
+            }
+        } while (!input.matches(regex));
+        return input;
+    }
+
+    private static boolean isValidDateOfBirthFormat(String date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+
+        try {
+            Date parsedDate = dateFormat.parse(date);
+            return parsedDate != null;
+        } catch (ParseException e) {
+            return false;
         }
     }
 
