@@ -42,7 +42,7 @@ public class ClubManagementSystemController {
                     case 6:
                         viewCompetitiveSwimmers();
                         break;
-                    case  7:
+                    case 7:
                         calculateAndDisplaySubscriptionCostForAllMembers();
                         break;
                     case 8:
@@ -52,6 +52,9 @@ public class ClubManagementSystemController {
                         viewTeamsAndCoaches(getCoaches(), getMembers());
                         break;
                     case 10:
+                        ClubPaymentChecker.checkPayments();
+                        break;
+                    case 11:
                         System.out.println("Exiting the system.");
                         saveMembersToCsv();
                         System.exit(0);
@@ -59,7 +62,7 @@ public class ClubManagementSystemController {
                     default:
                         System.out.println("Invalid choice. Please try again.");
                 }
-            }catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Invalid choice. Please try again.");
                 scanner.nextLine();
             }
@@ -81,8 +84,6 @@ public class ClubManagementSystemController {
                 member.getRecordSwimmingTime()
         );
     }
-
-
 
 
     public void viewTeamsAndCoaches(List<Coach> coaches, List<Member> members) {
@@ -308,6 +309,7 @@ public class ClubManagementSystemController {
             System.out.println("No member found with the given name.");
         }
     }
+
     public void calculateAndDisplaySubscriptionCostForAllMembers() {
         System.out.println("Subscription Costs:");
         for (Member member : members) {

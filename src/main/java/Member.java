@@ -11,16 +11,36 @@ public class Member {
     private String recordSwimmingTime;
     private boolean isCompetitiveSwimmer;
 
+    private boolean checkPayments;
+    private int remainingPayments;
+
     //private String team:
 
-    public Member(String name, String dateOfBirth, String email, String phoneNumber, String address, String team, String column) {
+    public Member(String name, String dateOfBirth, String email, String phoneNumber, String address, String team, String recordSwimmingTime, int remainingPayments) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.phoneNumber = String.valueOf(phoneNumber);
         this.address = address;
         this.discipline = team;
+        this.recordSwimmingTime = recordSwimmingTime;
+        this.remainingPayments = remainingPayments;
+        if (remainingPayments == 0) {
+            checkPayments = true;
+        }
     }
+
+    public Member(String name, String dateOfBirth, String email, String phoneNumber, String address, String team, String recordSwimmingTime) {
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.phoneNumber = String.valueOf(phoneNumber);
+        this.address = address;
+        this.discipline = team;
+        this.recordSwimmingTime = recordSwimmingTime;
+    }
+
+
 
     //Getters and setters for new fields
     public String getTeam() {
@@ -122,5 +142,9 @@ public class Member {
 
     public String getDiscipline() {
         return discipline;
+    }
+
+    public int getremainingPayments() {
+        return remainingPayments;
     }
 }

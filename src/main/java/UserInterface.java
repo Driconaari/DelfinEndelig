@@ -25,7 +25,8 @@ public class UserInterface {
         System.out.println("7. Calculate and Display Subscription Cost for Each Member");
         System.out.println("8. View Top Swimmers");
         System.out.println("9. View Teams and Coaches");
-        System.out.println("10. Exit");
+        System.out.println("10. Check Payments");
+        System.out.println("11. Exit");
     }
 
 

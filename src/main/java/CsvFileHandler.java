@@ -19,7 +19,7 @@ public class CsvFileHandler {
 
                 String[] data = line.split(",", -1);
 
-                if (data.length >= 7) {
+                if (data.length >= 8) {
                     String name = data[0].trim();
                     String dateOfBirth = data[1].trim();
                     String email = data[2].trim();
@@ -27,8 +27,9 @@ public class CsvFileHandler {
                     String address = data[4].trim();
                     String discipline = data[5].trim();
                     String recordSwimmingTime = data[6].trim();
+                    int checkPayments = Integer.parseInt(data[7].trim());
 
-                    Member member = new Member(name, dateOfBirth, email, phoneNumber, address, discipline, recordSwimmingTime);
+                    Member member = new Member(name, dateOfBirth, email, phoneNumber, address, discipline, recordSwimmingTime,checkPayments);
                     member.setTeam(discipline);
                     member.setRecordSwimmingTime(recordSwimmingTime);
 
@@ -57,7 +58,8 @@ public class CsvFileHandler {
                                 member.getPhoneNumber() + "," +
                                 member.getAddress() + "," +
                                 member.getDiscipline() + "," +
-                                member.getRecordSwimmingTime()
+                                member.getRecordSwimmingTime() + "," +
+                                member.getremainingPayments()
                 );
             }
 

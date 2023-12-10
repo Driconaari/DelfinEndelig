@@ -18,6 +18,7 @@ public class ClubPaymentChecker {
 
                 // Assuming the columns are in order: name, dateOfBirth, email, ..., balance
                 String name = columns[0];
+                String remainingPayment = columns[7];
                 // Extract other relevant fields as needed
 
                 // Extract balance (assuming it's in the last column)
@@ -25,7 +26,7 @@ public class ClubPaymentChecker {
 
                 // Check if the member is in arrears (owing money)
                 if (balance < 0) {
-                    System.out.println(name + " owes money!");
+                    System.out.println(name + " Balance is " + remainingPayment + " DKK");
                     // You can perform additional actions, such as notifying the member
                 }
             }
