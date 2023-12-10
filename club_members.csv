@@ -1,6 +1,21 @@
 Name,DateOfBirth,Email,PhoneNumber,Address,Team,RecordSwimmingTime
+Emma Evans,2005-09-15,emma@mail.com,34567890,202 Boulevard,freestyle,null,-500
 Frank Franklin,1990-12-20,frank@mail.com,87654321,303 Park,backstroke,2:20.34,-1000
-rank Franklin,1990-12-20,frank@mail.com,87654321,303 Park,backstroke,2:20.34,-1000
-ank Franklin,1990-12-20,frank@mail.com,87654321,303 Park,backstroke,2:20.34,-1000
-nk Franklin,1990-12-20,frank@mail.com,87654321,303 Park,backstroke,2:20.34,-1000
-k Franklin,1990-12-20,frank@mail.com,87654321,303 Park,backstroke,2:20.34,-1000
+Alice Anderson,2015-02-10,alice@mail.com,12345678,123 Avenue,freestyle,null,0
+Bob Bobman,1998-07-18,bob@mail.com,98765432,456 Street,backstroke,2:10.45,0
+Charlie Carlson,1985-11-30,charlie@mail.com,87654321,789 Road,breaststroke,3:45.67,0
+David Davidson,1972-04-05,david@mail.com,23456789,101 Lane,butterfly,1:30.12,0
+Emma Evans,2005-09-15,emma@mail.com,34567890,202 Boulevard,freestyle,null,0
+Timmy Franklin,1990-12-20,timmy@mail.com,87654321,303 Park,backstroke,2:20.34,-1000
+Grace Grayson,1982-03-25,grace@mail.com,98765432,404 Plaza,breaststroke,4:00.98,0
+Henry Henderson,1978-08-07,henry@mail.com,23456789,505 Square,butterfly,1:45.67,0
+Jack Jackson,2000-06-28,jack@mail.com,12345678,707 Drive,backstroke,2:45.67,0
+Kate Kensington,1995-10-03,kate@mail.com,87654321,808 Alley,breaststroke,3:15.89,0
+Liam Lively,1988-02-18,liam@mail.com,98765432,909 Way,butterfly,1:58.12,0
+Olivia Owens,2010-07-24,olivia@mail.com,23456789,010 Terrace,freestyle,null,0
+Peter Peterson,2003-11-08,peter@mail.com,34567890,111 Garden,backstroke,2:34.56,0
+Quinn Quinn,1997-04-14,quinn@mail.com,12345678,222 Cove,breaststroke,3:30.45,0
+Ryan Ryder,1984-09-29,ryan@mail.com,87654321,333 Harbor,butterfly,1:15.34,0
+Sophia Smith,1970-01-04,sophia@mail.com,98765432,444 Beach,freestyle,null,0
+bob Superbob,2001-03-23,bob@mail.com,23939323,bovej,freestyle,null,-1000
+carl,2003-05-03,carl@mail.com,39394848,carlvej ,freestyle,null,0

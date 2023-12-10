@@ -206,7 +206,15 @@ public class ClubManagementSystemController {
 
             String email = getValidatedString("Enter Email:", "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
             String phoneNumber = getValidatedString("Enter Phone Number:", "\\d{8}");
-            String address = scanner.nextLine();
+
+            String address;
+            do {
+                System.out.println("Enter Address:");
+                address = scanner.nextLine();
+                if (address.trim().isEmpty()) {
+                    System.out.println("Address cannot be empty. Try again!");
+                }
+            } while (address.trim().isEmpty());
 
             String team;
             do {
