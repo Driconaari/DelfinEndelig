@@ -25,11 +25,11 @@ public class CsvFileHandler {
                     String email = data[2].trim();
                     String phoneNumber = data[3].trim();
                     String address = data[4].trim();
-                    String team = data[5].trim();
+                    String discipline = data[5].trim();
                     String recordSwimmingTime = data[6].trim();
 
-                    Member member = new Member(name, dateOfBirth, email, phoneNumber, address, team);
-                    member.setTeam(team);
+                    Member member = new Member(name, dateOfBirth, email, phoneNumber, address, discipline, recordSwimmingTime);
+                    member.setTeam(discipline);
                     member.setRecordSwimmingTime(recordSwimmingTime);
 
                     members.add(member);
@@ -56,7 +56,7 @@ public class CsvFileHandler {
                                 member.getEmail() + "," +
                                 member.getPhoneNumber() + "," +
                                 member.getAddress() + "," +
-                                member.getTeam() + "," +
+                                member.getDiscipline() + "," +
                                 member.getRecordSwimmingTime()
                 );
             }

@@ -6,7 +6,8 @@ import java.text.SimpleDateFormat;
 
 public class ClubManagementSystemController {
     private static Scanner scanner = new Scanner(System.in);
-    private final TopSwimmers topSwimmers;
+    private static String recordSwimmingTime;
+    private TopSwimmers topSwimmers;
     private static List<Member> members;
     private List<Coach> coaches;
     private List<String> teams;
@@ -45,7 +46,7 @@ public class ClubManagementSystemController {
                         calculateAndDisplaySubscriptionCostForAllMembers();
                         break;
                     case 8:
-                        topSwimmers.viewTopSwimmers();
+                        topSwimmers.viewTopSwimmersByDiscipline();
                         break;
                     case 9:
                         viewTeamsAndCoaches(getCoaches(), getMembers());
@@ -208,14 +209,14 @@ public class ClubManagementSystemController {
 
             String team;
             do {
-                System.out.println("Enter Team (Freestyle, Backstroke, Breaststroke, Butterfly):");
+                System.out.println("Enter Discipline and Team (Freestyle, Backstroke, Breaststroke, Butterfly):");
                 team = scanner.nextLine().toLowerCase();
                 if (!team.matches("freestyle|backstroke|breaststroke|butterfly")) {
                     System.out.println("Invalid input. Please pick one of the styles above!");
                 }
             } while (!team.matches("freestyle|backstroke|breaststroke|butterfly"));
 
-            Member newMember = new Member(name, dateOfBirth, email, phoneNumber, address, team);
+            Member newMember = new Member(name, dateOfBirth, email, phoneNumber, address, team, recordSwimmingTime);
             members.add(newMember);
             CsvFileHandler.writeMembersToCsv(members);
 
@@ -248,24 +249,6 @@ public class ClubManagementSystemController {
             return false;
         }
     }
-
-//-------------------------------------------------
-
-    private void addCoach() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter Coach Name:");
-        String name = scanner.nextLine();
-
-        System.out.println("Enter Coach Team:");
-        String team = scanner.nextLine();
-
-        Coach newCoach = new Coach(name, team);
-        coaches.add(newCoach);
-
-        System.out.println("Coach added successfully.");
-    }
-
 
     void editMember() {
         Scanner scanner = new Scanner(System.in);

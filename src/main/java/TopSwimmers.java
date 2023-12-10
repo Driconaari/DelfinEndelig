@@ -1,6 +1,9 @@
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class TopSwimmers {
@@ -11,56 +14,90 @@ public class TopSwimmers {
         this.members = members;
     }
 
-    public void viewTopSwimmers() {
-        System.out.println("Top 5 Swimmers:");
-
-        // Display top 5 swimmers for junior category
-        System.out.println("Junior Category:");
-        displayTopSwimmers(getTopSwimmers("junior"));
-
-        // Display top 5 swimmers for senior category
-        System.out.println("Senior Category:");
-        displayTopSwimmers(getTopSwimmers("senior"));
+    public TopSwimmers(String csvFilePath) {
+        this.members = readMembersFromCSV(csvFilePath);
     }
 
-    private List<Member> getTopSwimmers(String category) {
-        // Implement logic to retrieve the top 5 swimmers for the specified category
-        // You can sort the competitive swimmers based on their performance and return the top 5
-        // For simplicity, I'll assume that the members list contains only competitive swimmers
-        List<Member> competitiveSwimmers = new ArrayList<>(members);
+    private List<Member> readMembersFromCSV(String csvFilePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
+            return reader.lines().skip(1)
+                    .map(line -> {
+                        String[] columns = line.split(",");
+                        return new Member(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5], columns[6]);
+                    })
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return List.of(); // Return an empty list in case of an error
+        }
+    }
 
-        // Filter swimmers by category
-        competitiveSwimmers = competitiveSwimmers.stream()
-                .filter(member -> (category.equals("junior") && member.getAge() < 18) ||
-                        (category.equals("senior") && member.getAge() >= 18))
-                .collect(Collectors.toList());
+    public void viewTopSwimmersByDiscipline() {
+        System.out.println("Top Swimmers by Discipline:");
+        displayTopSwimmersByDiscipline("backstroke");
+        displayTopSwimmersByDiscipline("butterfly");
+        displayTopSwimmersByDiscipline("breaststroke");
+        displayTopSwimmersByDiscipline("freestyle");
+    }
 
-        // Check if there are enough competitive swimmers to display
-        if (competitiveSwimmers.size() < 5) {
-            System.out.println("Not enough competitive swimmers to display.");
-            return competitiveSwimmers;
+    private void displayTopSwimmersByDiscipline(String discipline) {
+        System.out.println("Discipline: " + discipline);
+        List<Member> topSwimmers = getTopSwimmersByDiscipline(discipline);
+
+        if (topSwimmers.isEmpty()) {
+            System.out.println("Not enough competitive swimmers in this discipline.");
+        } else {
+            displayTopSwimmers(topSwimmers);
         }
 
-        // Sort competitiveSwimmers based on performance (you may need to modify this based on your data model)
-        competitiveSwimmers.sort(Comparator.comparing(Member::getRecordSwimmingTime));
+        System.out.println();
+    }
 
-        // Return the top 5 swimmers
-        return competitiveSwimmers.subList(0, 5);
+    private List<Member> getTopSwimmersByDiscipline(String discipline) {
+        List<Member> swimmersByDiscipline = members.stream()
+                .filter(member -> {
+                    String memberDiscipline = member.getDiscipline();
+                    return memberDiscipline != null && memberDiscipline.equalsIgnoreCase(discipline);
+                })
+                .collect(Collectors.toList());
+
+        swimmersByDiscipline.sort(Comparator.comparing(Member::getRecordSwimmingTime));
+
+        return swimmersByDiscipline.subList(0, Math.min(swimmersByDiscipline.size(), 5));
     }
 
     private void displayTopSwimmers(List<Member> topSwimmers) {
         for (Member member : topSwimmers) {
-            // Check if the member has a recorded swimming time before displaying
-            if (member.getRecordSwimmingTime() != null) {
+            if (member.isCompetitiveSwimmer() && member.getRecordSwimmingTime() != null) {
                 System.out.println(memberToString(member));
             }
         }
-        System.out.println();
     }
 
     private String memberToString(Member member) {
-        // Implement logic to convert a member to a string representation
-        // You can use member.toString() or customize it based on your needs
         return member.toString();
+    }
+
+    public void viewTopSwimmers() {
+        System.out.println("Top Swimmers by Discipline:");
+
+        Map<String, List<Member>> swimmersByDiscipline = groupSwimmersByDiscipline();
+
+        for (Map.Entry<String, List<Member>> entry : swimmersByDiscipline.entrySet()) {
+            String discipline = entry.getKey();
+            List<Member> topSwimmers = entry.getValue();
+
+            System.out.println(discipline + ":");
+            displayTopSwimmers(topSwimmers);
+        }
+    }
+
+    private Map<String, List<Member>> groupSwimmersByDiscipline() {
+        Map<String, List<Member>> swimmersByDiscipline = members.stream()
+                .filter(Member::isCompetitiveSwimmer)
+                .filter(member -> member.getDiscipline() != null && !member.getDiscipline().trim().isEmpty())
+                .collect(Collectors.groupingBy(Member::getDiscipline));
+
+        return swimmersByDiscipline;
     }
 }

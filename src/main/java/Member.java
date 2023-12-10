@@ -7,22 +7,24 @@ public class Member {
     private String email;
     private String phoneNumber;
     private String address;
-    private String team;
+    private String discipline;
     private String recordSwimmingTime;
     private boolean isCompetitiveSwimmer;
 
-    public Member(String name, String dateOfBirth, String email, String phoneNumber, String address, String team) {
+    //private String team:
+
+    public Member(String name, String dateOfBirth, String email, String phoneNumber, String address, String team, String column) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.phoneNumber = String.valueOf(phoneNumber);
         this.address = address;
-        this.team = team;
+        this.discipline = team;
     }
 
     //Getters and setters for new fields
     public String getTeam() {
-        return team;
+        return discipline;
     }
 
     public String getRecordSwimmingTime() {
@@ -31,7 +33,7 @@ public class Member {
 
     //Convert Member to CSV format
     public String toCsvString() {
-        return name + "," + dateOfBirth + "," + email + "," + phoneNumber + "," + address + "," + team + "," + recordSwimmingTime;
+        return name + "," + dateOfBirth + "," + email + "," + phoneNumber + "," + address + "," + discipline + "," + recordSwimmingTime;
     }
 
     @Override
@@ -45,7 +47,7 @@ public class Member {
                 "  %s%n" +
                 "  recordSwimmingTime=%s%n" +
                 "  competitiveSwimmer=%b%n" +
-                "}", name, dateOfBirth, email, phoneNumber, address, team, (recordSwimmingTime != null ? "'" + recordSwimmingTime + "'" : "null"), isCompetitiveSwimmer());
+                "}", name, dateOfBirth, email, phoneNumber, address, discipline, (recordSwimmingTime != null ? "'" + recordSwimmingTime + "'" : "null"), isCompetitiveSwimmer());
     }
 
 
@@ -111,10 +113,14 @@ public class Member {
 
     //Additional setter methods
     public void setTeam(String team) {
-        this.team = team;
+        this.discipline = team;
     }
 
     public void setRecordSwimmingTime(String recordSwimmingTime) {
         this.recordSwimmingTime = recordSwimmingTime;
+    }
+
+    public String getDiscipline() {
+        return discipline;
     }
 }
