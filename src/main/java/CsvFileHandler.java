@@ -29,7 +29,7 @@ public class CsvFileHandler {
                     String recordSwimmingTime = data[6].trim();
                     int checkPayments = Integer.parseInt(data[7].trim());
 
-                    Member member = new Member(name, dateOfBirth, email, phoneNumber, address, discipline, recordSwimmingTime,checkPayments);
+                    Member member = new Member(name, dateOfBirth, email, phoneNumber, address, discipline, recordSwimmingTime, checkPayments);
                     member.setTeam(discipline);
                     member.setRecordSwimmingTime(recordSwimmingTime);
 

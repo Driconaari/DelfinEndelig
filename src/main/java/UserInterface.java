@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.Scanner;
 
 public class UserInterface {
     private final ClubManagementSystemController clubSystem;
@@ -11,7 +10,6 @@ public class UserInterface {
         this.members = clubSystem.getMembers();  // Initialize members here
         this.topSwimmers = new TopSwimmers(members);  // Pass the initialized members list
     }
-
 
 
     public static void displayMainMenu() {
