@@ -45,5 +45,5 @@ public class SubscriptionCalculatorTest {
         assertEquals(1600.0, cost, 0.01);
     }
 
-    // Additional tests can be added for edge cases and different scenarios
+
 }
